@@ -2,7 +2,47 @@
 
 @layer utilities {
   .animate-spin-slow {
-    animation: spin 8s linear infinite;
+    animation: spin 15s linear infinite;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes connectLine {
+  0% {
+    stroke-dashoffset: 500;
+    stroke-dasharray: 500;
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.8;
+    stroke-dasharray: 500;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 500;
+    opacity: 0.1;
+  }
+}
+
+@keyframes shine {
+  0% {
+    stroke-width: 1;
+    filter: drop-shadow(0 0 1px rgba(59, 130, 246, 0.2));
+  }
+  50% {
+    stroke-width: 2;
+    filter: drop-shadow(0 0 3px rgba(59, 130, 246, 0.5));
+  }
+  100% {
+    stroke-width: 1;
+    filter: drop-shadow(0 0 1px rgba(59, 130, 246, 0.2));
   }
 }
 
@@ -12,5 +52,23 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
   }
 }

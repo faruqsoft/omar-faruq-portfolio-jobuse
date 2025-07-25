@@ -20,6 +20,23 @@ const HeroSection = () => {
     const radius = 190;
     const iconSize = 45;
 
+    // SVG line path for connections
+    const createConnectionPath = (startX, startY, endX, endY) => {
+        const midX = (startX + endX) / 2;
+        const midY = (startY + endY) / 2;
+        // Calculate control point offset for smoother curve
+        const dx = endX - startX;
+        const dy = endY - startY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const offset = distance / 4;
+        
+        // Add slight curve to the path
+        const cpX = midX + (dy / distance) * offset;
+        const cpY = midY - (dx / distance) * offset;
+        
+        return `M ${startX} ${startY} Q ${cpX} ${cpY} ${endX} ${endY}`;
+    };
+
     const techIcons = [
         "react",
         "javascript",
@@ -106,6 +123,79 @@ const HeroSection = () => {
             >
                 {/* Icons Circular Arrangement */}
                 <div className="absolute w-full h-full">
+                    {/* SVG Connection Lines */}
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                        <defs>
+                            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#2563eb" stopOpacity="0.6" />
+                                <stop offset="50%" stopColor="#9333ea" stopOpacity="0.8" />
+                                <stop offset="100%" stopColor="#2563eb" stopOpacity="0.6" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        {techIcons.map((icon, i) => {
+                            const angle1 = (i / techIcons.length) * 2 * Math.PI;
+                            const x1 = Math.cos(angle1) * radius + 225;
+                            const y1 = Math.sin(angle1) * radius + 225;
+                            
+                            return techIcons.map((_, j) => {
+                                if (j <= i) return null;
+                                const angle2 = (j / techIcons.length) * 2 * Math.PI;
+                                const x2 = Math.cos(angle2) * radius + 225;
+                                const y2 = Math.sin(angle2) * radius + 225;
+                                
+                                return (
+                                    <motion.path
+                                        key={`${i}-${j}`}
+                                        d={createConnectionPath(x1, y1, x2, y2)}
+                                        stroke="url(#lineGradient)"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        fill="none"
+                                        filter="url(#glow)"
+                                        initial={{ pathLength: 0, opacity: 0 }}
+                                        animate={{ 
+                                            pathLength: 1,
+                                            opacity: [0.3, 0.6, 0.3],
+                                            strokeWidth: ["2px", "3px", "2px"]
+                                        }}
+                                        transition={{
+                                            pathLength: {
+                                                duration: 1.5,
+                                                ease: "easeInOut",
+                                                delay: (i + j) * 0.1
+                                            },
+                                            opacity: {
+                                                duration: 2,
+                                                repeat: Infinity,
+                                                ease: "easeInOut"
+                                            },
+                                            strokeWidth: {
+                                                duration: 2,
+                                                repeat: Infinity,
+                                                ease: "easeInOut"
+                                            }
+                                        }}
+                                        whileHover={{
+                                            strokeWidth: "4px",
+                                            opacity: 0.9,
+                                            filter: "url(#glow) brightness(1.5)",
+                                            transition: { duration: 0.2 }
+                                        }}
+                                    />
+                                );
+                            });
+                        })}
+                    </svg>
+
+                    {/* Tech Icons */}
                     {techIcons.map((icon, index) => {
                         const angle = (index / techIcons.length) * 2 * Math.PI;
                         const x = Math.cos(angle) * radius;
@@ -114,24 +204,45 @@ const HeroSection = () => {
                         return (
                             <motion.div
                                 key={icon}
-                                className="absolute"
+                                className="absolute animate-float"
                                 style={{
                                     left: `calc(50% + ${x}px - ${iconSize / 2}px)`,
                                     top: `calc(50% + ${y}px - ${iconSize / 2}px)`,
                                     width: `${iconSize}px`,
                                     height: `${iconSize}px`
                                 }}
-                                initial={{ scale: 0, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
+                                initial={{ scale: 0, opacity: 0, y: 20 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
                                 transition={{
                                     type: "spring",
-                                    stiffness: 100,
-                                    damping: 12,
-                                    delay: index * 0.1
+                                    stiffness: 200,
+                                    damping: 15,
+                                    delay: index * 0.15
                                 }}
                                 whileHover={{
                                     scale: 1.3,
-                                    filter: "brightness(1.2)"
+                                    filter: "brightness(1.2)",
+                                    zIndex: 10,
+                                    transition: {
+                                        type: "spring",
+                                        stiffness: 400,
+                                        damping: 10
+                                    }
+                                }}
+                                onHoverStart={() => {
+                                    const lines = document.querySelectorAll('.connection-line');
+                                    lines.forEach(line => {
+                                        line.style.stroke = "rgba(59, 130, 246, 0.3)";
+                                        line.style.strokeDasharray = "4";
+                                        line.style.animation = "connectLine 1s ease forwards";
+                                    });
+                                }}
+                                onHoverEnd={() => {
+                                    const lines = document.querySelectorAll('.connection-line');
+                                    lines.forEach(line => {
+                                        line.style.stroke = "rgba(59, 130, 246, 0)";
+                                        line.style.animation = "none";
+                                    });
                                 }}
                             >
                                 <img
@@ -155,8 +266,10 @@ const HeroSection = () => {
                 <motion.div
                     className="relative w-80 h-80 group"
                     initial={{ rotate: 0 }}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    whileHover={{ 
+                        scale: 1.02,
+                        transition: { type: "spring", stiffness: 400, damping: 10 }
+                    }}
                 >
                     {/* Animated Border Gradient */}
                     <motion.div 
@@ -167,30 +280,50 @@ const HeroSection = () => {
                         }}
                         animate={{
                             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                            scale: [1, 1.02, 1],
                         }}
                         transition={{
-                            duration: 3,
-                            ease: "linear",
-                            repeat: Infinity,
+                            backgroundPosition: {
+                                duration: 5,
+                                ease: "linear",
+                                repeat: Infinity,
+                            },
+                            scale: {
+                                duration: 3,
+                                ease: "easeInOut",
+                                repeat: Infinity,
+                            }
                         }}
                     />
                     <motion.div 
-                        className="absolute inset-0 rounded-full blur-md"
+                        className="absolute inset-0 rounded-full blur-lg"
                         style={{
                             background: "linear-gradient(90deg, #2563eb, #9333ea, #ec4899, #2563eb)",
                             backgroundSize: "400% 100%",
                             opacity: 0,
                         }}
-                        whileHover={{
-                            opacity: 0.7,
-                        }}
+                        initial={{ opacity: 0 }}
                         animate={{
+                            opacity: [0, 0.5, 0],
                             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                            scale: [1, 1.05, 1],
                         }}
                         transition={{
-                            duration: 3,
-                            ease: "linear",
-                            repeat: Infinity,
+                            opacity: {
+                                duration: 3,
+                                ease: "easeInOut",
+                                repeat: Infinity,
+                            },
+                            backgroundPosition: {
+                                duration: 5,
+                                ease: "linear",
+                                repeat: Infinity,
+                            },
+                            scale: {
+                                duration: 3,
+                                ease: "easeInOut",
+                                repeat: Infinity,
+                            }
                         }}
                     />
                     
