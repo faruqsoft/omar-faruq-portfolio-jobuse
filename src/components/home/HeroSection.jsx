@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import './IconHighlight.css';
 
 const HeroSection = () => {
+    let bubbleAnimationInterval;
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -18,7 +20,7 @@ const HeroSection = () => {
     };
 
     const radius = 190;
-    const iconSize = 45;
+    const iconSize = 60; // Increased icon size
 
     // SVG line path for connections
     const createConnectionPath = (startX, startY, endX, endY) => {
@@ -197,19 +199,19 @@ const HeroSection = () => {
 
                     {/* Tech Icons */}
                     {techIcons.map((icon, index) => {
-                        const angle = (index / techIcons.length) * 2 * Math.PI;
-                        const x = Math.cos(angle) * radius;
-                        const y = Math.sin(angle) * radius;
-
-                        return (
+                            const angle = (index / techIcons.length) * 2 * Math.PI - Math.PI / 2; // Start from top
+                            const x = Math.cos(angle) * radius;
+                            const y = Math.sin(angle) * radius;                        return (
                             <motion.div
                                 key={icon}
-                                className="absolute animate-float"
+                                className="absolute animate-float tech-icon-container"
                                 style={{
                                     left: `calc(50% + ${x}px - ${iconSize / 2}px)`,
                                     top: `calc(50% + ${y}px - ${iconSize / 2}px)`,
                                     width: `${iconSize}px`,
-                                    height: `${iconSize}px`
+                                    height: `${iconSize}px`,
+                                    padding: "10px",
+                                    borderRadius: "50%",
                                 }}
                                 initial={{ scale: 0, opacity: 0, y: 20 }}
                                 animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -248,7 +250,7 @@ const HeroSection = () => {
                                 <img
                                     src={icon === 'tailwindcss' ? 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg' : `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${icon}/${icon}-${iconTypes[icon]}.svg`}
                                     alt={`${icon} icon`}
-                                    className={`w-full h-full object-contain bg-white/60 p-1 rounded-lg drop-shadow-md ${icon === 'tailwindcss' ? 'text-[#38bdf8]' : ''}`}
+                                    className={`w-full h-full object-contain bg-white/70 p-2.5 rounded-xl drop-shadow-lg ${icon === 'tailwindcss' ? 'text-[#38bdf8]' : ''}`}
                                     onError={(e) => {
                                         if (icon === 'tailwindcss') {
                                             e.target.src = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg';
@@ -329,11 +331,63 @@ const HeroSection = () => {
                     
                     {/* Profile Image */}
                     <motion.div 
-                        className="absolute inset-[3px] bg-white rounded-full overflow-hidden"
+                        className="absolute inset-[3px] bg-white rounded-full overflow-hidden cursor-pointer"
                         initial={{ rotate: 0 }}
                         whileHover={{ 
                             scale: 1.02,
                             transition: { type: "spring", stiffness: 400 }
+                        }}
+                        onHoverStart={() => {
+                            const techIconElements = document.querySelectorAll('.tech-icon-container');
+                            let currentIndex = 0;
+                            
+                            // Create highlight elements if they don't exist
+                            techIconElements.forEach((element) => {
+                                if (!element.querySelector('.icon-highlight')) {
+                                    const highlight = document.createElement('div');
+                                    highlight.className = 'icon-highlight';
+                                    element.appendChild(highlight);
+                                }
+                            });
+                            
+                            // Clear any existing interval
+                            if (bubbleAnimationInterval) {
+                                clearInterval(bubbleAnimationInterval);
+                            }
+                            
+                            // Start continuous animation
+                            bubbleAnimationInterval = setInterval(() => {
+                                // Remove animation from all icons
+                                techIconElements.forEach(element => {
+                                    const highlight = element.querySelector('.icon-highlight');
+                                    if (highlight) {
+                                        highlight.style.animation = '';
+                                    }
+                                });
+                                
+                                // Add animation to current icon
+                                const currentElement = techIconElements[currentIndex];
+                                const highlight = currentElement.querySelector('.icon-highlight');
+                                if (highlight) {
+                                    highlight.style.animation = 'iconBubbleHighlight 1s ease';
+                                }
+                                
+                                // Move to next icon, loop back to start if at end
+                                currentIndex = (currentIndex + 1) % techIconElements.length;
+                            }, 1000); // Move to next icon every 1 second
+                        }}
+                        onHoverEnd={() => {
+                            // Clear the animation interval
+                            if (bubbleAnimationInterval) {
+                                clearInterval(bubbleAnimationInterval);
+                                bubbleAnimationInterval = null;
+                            }
+                            
+                            // Remove animations from all icons
+                            const highlights = document.querySelectorAll('.icon-highlight');
+                            highlights.forEach(highlight => {
+                                highlight.style.animation = '';
+                            });
                         }}
                     >
                         <img
