@@ -29,7 +29,7 @@ const SkillsSection = () => {
       className="mb-16"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
+      viewport={{ viewport: true }}
     >
       <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
         Featured Skills
