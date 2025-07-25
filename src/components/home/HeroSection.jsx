@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import './IconHighlight.css';
+import AnimatedParagraph from "./AnimatedParagraph";
 
 const HeroSection = () => {
     let bubbleAnimationInterval;
@@ -83,21 +84,17 @@ const HeroSection = () => {
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300 }}
                 >
-                    Hi, I'm <span>Omar Faruq</span>
+                    Hi, I'm <br></br><span>Omar Faruq</span>
                 </motion.h1>
-                <motion.h2
-                    className="text-2xl text-gray-600 mb-6"
-                    variants={itemVariants}
+                 <motion.h2
+                className="text-2xl mb-4 bg-gradient-to-r from-purple-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent font-semibold tracking-wide"
+                initial={{ y: 40, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                    Full Stack Developer | React Specialist
+                Full Stack Developer | React Specialist
                 </motion.h2>
-                <motion.p
-                    className="text-lg text-gray-700 mb-8"
-                    variants={itemVariants}
-                >
-                    I create modern and responsive web applications using the latest technologies.
-                    Specialized in MERN stack development with a passion for clean code and user experience.
-                </motion.p>
+                <AnimatedParagraph></AnimatedParagraph>
                 <motion.div className="flex gap-4" variants={itemVariants}>
                     <motion.a
                         href="#contact"

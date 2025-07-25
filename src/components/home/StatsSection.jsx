@@ -1,35 +1,80 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
+
+const stats = [
+  { number: 50, text: "Projects Completed", suffix: "+" },
+  { number: 30, text: "Happy Clients", suffix: "+" },
+  { number: 5, text: "Years Experience", suffix: "+" },
+  { number: 20, text: "Technologies", suffix: "+" },
+];
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.9, rotateX: -10 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
 
 const StatsSection = () => {
-    const stats = [
-        { number: "50+", text: "Projects Completed" },
-        { number: "30+", text: "Happy Clients" },
-        { number: "5+", text: "Years Experience" },
-        { number: "20+", text: "Technologies" }
-    ];
+  return (
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 px-4 md:px-0"
+    >
+      {stats.map((stat, index) => {
+        const { ref, inView } = useInView({
+          triggerOnce: true,
+          threshold: 0.4,
+        });
 
-    return (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-            {stats.map((stat, index) => (
-                <motion.div
-                    key={index}
-                    className="text-center p-6 rounded-xl bg-gradient-to-br from-white to-blue-50 shadow-lg hover:shadow-xl transition-shadow duration-300"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.2 }}
-                >
-                    <motion.h3 
-                        className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text mb-2"
-                        whileHover={{ scale: 1.1 }}
-                    >
-                        {stat.number}
-                    </motion.h3>
-                    <p className="text-gray-600">{stat.text}</p>
-                </motion.div>
-            ))}
-        </div>
-    );
+        return (
+          <motion.div
+            key={index}
+            variants={cardVariants}
+            className="text-center p-6 rounded-2xl backdrop-blur-md bg-gradient-to-br from-white/70 to-blue-100/60 border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.03]"
+          >
+            <motion.h3
+              className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 text-transparent bg-clip-text mb-2"
+              whileHover={{ scale: 1.1 }}
+              ref={ref}
+            >
+              {inView && (
+                <CountUp
+                  end={stat.number}
+                  duration={1.5}
+                  suffix={stat.suffix || ""}
+                  delay={index * 0.2}
+                />
+              )}
+            </motion.h3>
+            <p className="text-gray-700 font-medium text-base md:text-lg">
+              {stat.text}
+            </p>
+          </motion.div>
+        );
+      })}
+    </motion.div>
+  );
 };
 
 export default StatsSection;
