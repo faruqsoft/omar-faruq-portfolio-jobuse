@@ -39,7 +39,7 @@ const StatsSection = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
-      className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 px-4 md:px-0"
+      className="grid grid-cols-2 mt-32 mb-32 md:grid-cols-4 gap-6 md:gap-8 px-4 md:px-0"
     >
       {stats.map((stat, index) => {
         const { ref, inView } = useInView({

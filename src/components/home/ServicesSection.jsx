@@ -47,7 +47,7 @@ const ServicesSection = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
         >
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 mt-24 text-center bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
                 Services I Offer
             </h2>
 

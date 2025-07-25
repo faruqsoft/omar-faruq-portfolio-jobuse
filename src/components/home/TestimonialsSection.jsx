@@ -3,21 +3,21 @@ import { motion } from 'framer-motion';
 const TestimonialsSection = () => {
     const testimonials = [
         {
-            name: "John Doe",
+            name: "Provat Suttrodhor",
             position: "CEO, Tech Startup",
             image: "https://placehold.co/100x100",
             quote: "Outstanding full-stack developer who delivered our project on time with excellent quality. The code structure and documentation were exceptional.",
             rating: 5
         },
         {
-            name: "Sarah Johnson",
+            name: "Bokul Dev",
             position: "Product Manager",
             image: "https://placehold.co/100x100",
             quote: "Excellent problem-solving skills and great attention to detail. The API architecture and frontend implementation were exactly what we needed.",
             rating: 5
         },
         {
-            name: "Mike Brown",
+            name: "Masum CMS",
             position: "Tech Lead",
             image: "https://placehold.co/100x100",
             quote: "Great experience working together. Strong understanding of both frontend and backend technologies. Would definitely recommend!",
