@@ -36,7 +36,7 @@ const About = () => {
         >
           <h3 className="text-3xl font-semibold mb-4 bg-gradient-to-r from-purple-500 to-blue-500 text-transparent bg-clip-text">
             <Typewriter
-              words={['Frontend Web Developer', 'React.js Enthusiast', 'UI/UX Focused Engineer']}
+              words={['Fullstack Web Developer', 'React.js Enthusiast', 'UI/UX Focused Engineer']}
               loop={0}
               cursor
               cursorStyle="_"
@@ -46,11 +46,9 @@ const About = () => {
             />
           </h3>
 
-          <p className="text-gray-700 mb-6 leading-relaxed">
-            I'm a dedicated Frontend Web Developer with a strong command of modern frameworks like React.js, Tailwind CSS, and responsive UI design principles.
-            I specialize in building intuitive, accessible, and performance-optimized interfaces that offer seamless digital experiences across all devices.
-            With a passion for pixel-perfect design and interactive frontend development, I transform ideas into scalable, elegant code that delivers real value.
-          </p>
+       <p className="text-gray-700 mb-6 leading-relaxed">
+        I’m a passionate Junior Fullstack Web Developer skilled in crafting responsive and scalable web applications using technologies like React.js, Node.js, Express, MongoDB, and Tailwind CSS. I enjoy building clean and functional UIs on the frontend while ensuring robust, secure, and efficient logic on the backend. With a strong foundation in both client-side and server-side development, I bring ideas to life through end-to-end solutions that are user-friendly, maintainable, and performance-driven.
+      </p>
 
           {/* Personal Info */}
           <div className="mb-6">

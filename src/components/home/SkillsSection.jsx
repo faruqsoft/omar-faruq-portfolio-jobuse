@@ -52,11 +52,11 @@ const SkillsSection = () => {
       <h3 className="font-semibold mb-4 text-xl">{category.title}</h3>
 
       {/* 👉 Make skills in 2 columns */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-2">
         {category.skills.map((skill, skillIndex) => (
           <motion.span
             key={skillIndex}
-            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white  px-[5%] py-[4%] rounded-[20%] text-center text-sm shadow-sm"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-0.5 rounded-full text-center text-sm shadow-sm"
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
