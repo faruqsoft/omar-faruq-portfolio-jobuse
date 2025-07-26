@@ -92,7 +92,7 @@ const ServicesSection = () => {
       title: 'CI/CD Implementation',
       description: 'Automated deployment workflows using GitHub Actions, Docker, and cloud platforms.',
       technologies: [
-        { name: 'GitHub Actions', icon: <SiGithubactions /> },
+        { name: 'GitHub action', icon: <SiGithubactions /> },
         { name: 'Docker', icon: <FaDocker /> },
         { name: 'AWS', icon: <FaAws /> },
         { name: 'Vercel', icon: <SiVercel /> },

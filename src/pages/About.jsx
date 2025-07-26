@@ -6,7 +6,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="container mx-auto py-16 px-4">
+    <div className="container mx-auto mt-12 py-16 px-4">
       {/* Section Title */}
       <motion.h2
         initial={{ opacity: 0, y: -30 }}

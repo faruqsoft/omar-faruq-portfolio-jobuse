@@ -28,7 +28,7 @@ const About = () => {
             autoplay
             loop
             src={developerAnimation}
-            style={{ height: "100%", width: "100%" }}
+            style={{ height:"500px", width: "500px", }}
           />
         </motion.div>
 

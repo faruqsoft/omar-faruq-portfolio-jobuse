@@ -18,11 +18,11 @@ const Footer = () => {
         </svg>
       </div>
 
-      <div className="bg-gradient-to-b from-blue-600 to-purple-700 pt-12 pb-6 px-4">
+      <div className="bg-gradient-to-b from-blue-500 to-purple-600 pt-6 pb-4 px-4">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 animate-fadeInUp">
           {/* About Me */}
           <div>
-            <h3 className="text-2xl font-semibold mb-4">About Me</h3>
+            <h3 className="text-2xl font-semibold mb-2">About Me</h3>
             <p className="text-gray-200 leading-relaxed">
               I’m a passionate <span className="text-white font-bold">Full Stack Developer</span> (MERN),
               crafting modern and responsive web experiences that solve real-world problems.
@@ -31,7 +31,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-2xl font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-2xl font-semibold mb-2">Quick Links</h3>
             <ul className="space-y-3 text-gray-200">
               <li><Link to="/projects" className="hover:text-white transition">Projects</Link></li>
               <li><Link to="/services" className="hover:text-white transition">Services</Link></li>
@@ -42,7 +42,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-2xl font-semibold mb-4">Contact Info</h3>
+            <h3 className="text-2xl font-semibold mb-2">Contact Info</h3>
             <ul className="space-y-3 text-gray-200">
               <li className="flex items-center gap-2"><FaEnvelope /> your.email@example.com</li>
               <li className="flex items-center gap-2"><FaPhoneAlt /> +880 1234-567890</li>
@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-purple-400 pt-6 text-center text-gray-200 text-sm tracking-wide">
+        <div className="mt-4 border-t border-purple-400 pt-2 text-center text-gray-200 text-sm tracking-wide">
           © {new Date().getFullYear()} Omar.dev — All rights reserved.
         </div>
       </div>

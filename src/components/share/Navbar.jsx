@@ -30,19 +30,17 @@ const Navbar = () => {
 
     return (
         <motion.nav 
-            className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-                scrolled 
-                    ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg'
-                    : 'bg-gradient-to-r from-blue-600 to-purple-600'
-            }`}
+            className={`fixed w-full top-6 rounded-3xl z-50 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 
+              
+            `}
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ type: 'spring', stiffness: 50, damping: 20 }}
         >
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4 ">
                 <div className="flex justify-between items-center h-16">
                     <Link to="/" className="text-2xl md:text-3xl font-bold tracking-wide">
-                        <span className={scrolled ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text' : 'text-white'}>
+                        <span className={scrolled ? 'bg-purple-600 text-transparent bg-clip-text' : 'text-white'}>
                             Omar
                         </span>
                         <span className="text-yellow-400">.dev</span>
@@ -57,10 +55,10 @@ const Navbar = () => {
                                     `relative px-2 py-1 text-sm font-medium transition-all duration-300
                                     ${isActive
                                         ? scrolled 
-                                            ? 'text-purple-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-purple-600'
+                                            ? 'text-yellow-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-purple-600'
                                             : 'text-yellow-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-yellow-300'
                                         : scrolled
-                                            ? 'text-gray-700 hover:text-purple-600 dark:text-gray-200 dark:hover:text-purple-400'
+                                            ? 'text-gray-700 hover:text-purple-900 dark:text-gray-200'
                                             : 'text-white hover:text-yellow-300'
                                     }`
                                 }

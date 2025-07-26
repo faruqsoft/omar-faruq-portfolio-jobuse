@@ -1,6 +1,6 @@
 .skills-container {
-  background: linear-gradient(135deg, #0f172a, #1e293b); /* deep blue gradient */
-  color: white;
+  background: white;
+  color: #0f172a;
   padding: 4rem 2rem;
   min-height: 100vh;
 }
@@ -28,6 +28,7 @@
 .skills-header h2 {
   font-size: 2.5rem;
   font-weight: bold;
+  color: #0f172a;
 }
 
 .category-buttons {
@@ -40,22 +41,22 @@
 
 .category-btn {
   padding: 0.4rem 1.2rem;
-  background-color: #334155;
+  background-color: #e2e8f0; /* Light gray */
   border-radius: 9999px;
   border: none;
-  color: white;
+  color: #0f172a;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s;
 }
 
 .category-btn:hover {
-  background-color: #475569;
+  background-color: #cbd5e1;
 }
 
 .category-btn.active {
-  background-color: white;
-  color: #7c3aed;
+  background-color: #7c3aed;
+  color: white;
 }
 
 /* Scrollable skill rows */
@@ -83,12 +84,12 @@
 .skill-card {
   min-width: 220px;
   max-width: 220px;
-  background-color: #1e293b;
+  background-color: #f8fafc; /* Light card */
   border-radius: 1rem;
   padding: 1.2rem;
   text-align: center;
-  color: white;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  color: #0f172a;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 

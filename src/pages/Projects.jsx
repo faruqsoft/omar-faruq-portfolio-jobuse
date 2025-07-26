@@ -21,7 +21,7 @@ const Projects = () => {
       animate="animate"
       exit="exit"
       variants={pageVariants}
-      className="min-h-screen bg-gradient-to-b from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800"
+      className="min-h-screen bg-white"
     >
       <div className="container mx-auto py-16 px-4" id="projects">
         <motion.h2
@@ -29,7 +29,7 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
+          className="text-4xl font-bold text-center mb-12 mt-24 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
         >
           Featured Projects
         </motion.h2>
@@ -46,7 +46,7 @@ const Projects = () => {
             }`}
           >
             {/* Carousel */}
-            <div className="w-full md:w-1/2 rounded-xl shadow-lg overflow-hidden bg-white dark:bg-gray-800">
+            <div className="w-full md:w-1/2 rounded-xl shadow-lg overflow-hidden bg-white">
               <Carousel
                 autoPlay
                 infiniteLoop
@@ -73,8 +73,8 @@ const Projects = () => {
               <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
                 {project.title}
               </h3>
-              <p className="text-gray-700 dark:text-gray-300">{project.description}</p>
-              <ul className="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 space-y-2">
+              <p className="text-gray-700 ">{project.description}</p>
+              <ul className="list-disc list-inside text-sm text-gray-600 space-y-2">
                 {project.features.map((feature, i) => (
                   <li key={i}>{feature}</li>
                 ))}
@@ -87,7 +87,7 @@ const Projects = () => {
                   return (
                     <span
                       key={i}
-                      className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 dark:bg-gray-700 rounded-full text-sm text-gray-800 dark:text-gray-200 shadow-sm"
+                      className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full text-sm text-gray-800  shadow-sm"
                     >
                       <Icon className="text-lg text-blue-600 dark:text-purple-400" />
                       {tech.name}
@@ -109,7 +109,7 @@ const Projects = () => {
                   href={project.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-all duration-300"
+                  className="flex items-center gap-2 px-4 py-2  text-white rounded-lg hover:bg-gray-900 transition-all duration-300"
                 >
                   <FaGithub className="text-lg" />
                   GitHub
