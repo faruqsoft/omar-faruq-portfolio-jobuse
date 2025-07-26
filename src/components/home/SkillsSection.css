@@ -1,0 +1,121 @@
+.skills-container {
+  background: linear-gradient(135deg, #0f172a, #1e293b); /* deep blue gradient */
+  color: white;
+  padding: 4rem 2rem;
+  min-height: 100vh;
+}
+
+.skills-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.skills-button {
+  background: linear-gradient(to right, #6366f1, #8b5cf6);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+  border: none;
+}
+
+.skills-button:hover {
+  transform: scale(1.05);
+}
+
+.skills-header h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.category-btn {
+  padding: 0.4rem 1.2rem;
+  background-color: #334155;
+  border-radius: 9999px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.category-btn:hover {
+  background-color: #475569;
+}
+
+.category-btn.active {
+  background-color: white;
+  color: #7c3aed;
+}
+
+/* Scrollable skill rows */
+.scroll-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-row {
+  display: flex;
+  gap: 1rem;
+  animation: scroll 40s linear infinite;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.scroll-left {
+  animation-direction: normal;
+}
+
+.scroll-right {
+  animation-direction: reverse;
+}
+
+.skill-card {
+  min-width: 220px;
+  max-width: 220px;
+  background-color: #1e293b;
+  border-radius: 1rem;
+  padding: 1.2rem;
+  text-align: center;
+  color: white;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: scale(1.05);
+}
+
+.icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.6rem;
+  color: #7c3aed;
+}
+
+/* Animate rows */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skill-card {
+    min-width: 180px;
+    max-width: 180px;
+  }
+}

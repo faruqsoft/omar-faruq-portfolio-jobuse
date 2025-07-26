@@ -1,80 +1,93 @@
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import './SkillsSection.css';
+import { SiVercel } from 'react-icons/si';
+
+import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaBootstrap, FaFigma, FaGitAlt, FaGithub, } from 'react-icons/fa';
+import { SiTailwindcss, SiNextdotjs, SiFramer, SiExpress, SiMongodb, SiMysql, SiFirebase, SiJsonwebtokens, SiPostman, SiSketch, SiNpm, SiWebstorm, SiNetlify } from 'react-icons/si';
+
+const allSkills = [
+  // Frontend
+  { name: 'HTML5', icon: <FaHtml5 />, category: 'Frontend', desc: 'Markup Language' },
+  { name: 'CSS3', icon: <FaCss3Alt />, category: 'Frontend', desc: 'Styling Language' },
+  { name: 'Tailwind CSS', icon: <SiTailwindcss />, category: 'Frontend', desc: 'Utility-first CSS' },
+  { name: 'ReactJS', icon: <FaReact />, category: 'Frontend', desc: 'UI Library' },
+  { name: 'Next.js', icon: <SiNextdotjs />, category: 'Frontend', desc: 'React Framework' },
+  { name: 'Bootstrap', icon: <FaBootstrap />, category: 'Frontend', desc: 'CSS Framework' },
+  { name: 'Framer Motion', icon: <SiFramer />, category: 'Frontend', desc: 'Animation library' },
+
+  // Backend
+  { name: 'Node.js', icon: <FaNodeJs />, category: 'Backend', desc: 'JavaScript runtime' },
+  { name: 'Express.js', icon: <SiExpress />, category: 'Backend', desc: 'Web framework' },
+  { name: 'MongoDB', icon: <SiMongodb />, category: 'Backend', desc: 'NoSQL Database' },
+  { name: 'MySQL', icon: <SiMysql />, category: 'Backend', desc: 'Relational Database' },
+  { name: 'Firebase', icon: <SiFirebase />, category: 'Backend', desc: 'Backend services' },
+  { name: 'JWT', icon: <SiJsonwebtokens />, category: 'Backend', desc: 'Auth token system' },
+
+
+  // Tools
+  { name: 'VS Code', icon: <SiVercel />, category: 'Tools', desc: 'Code Editor' },
+  { name: 'WebStorm', icon: <SiWebstorm />, category: 'Tools', desc: 'IDE' },
+  { name: 'Git', icon: <FaGitAlt />, category: 'Tools', desc: 'Version control' },
+  { name: 'GitHub', icon: <FaGithub />, category: 'Tools', desc: 'Repository host' },
+  { name: 'Postman', icon: <SiPostman />, category: 'Tools', desc: 'API testing' },
+  { name: 'npm', icon: <SiNpm />, category: 'Tools', desc: 'Package manager' },
+  { name: 'Figma', icon: <FaFigma />, category: 'Tools', desc: 'UI Design' },
+  { name: 'Sketch', icon: <SiSketch />, category: 'Tools', desc: 'Design tool' },
+
+  // DevOps
+ { name: 'Vercel', icon: <SiVercel />, category: 'DevOps', desc: 'Frontend deploy' },
+
+  { name: 'Netlify', icon: <SiNetlify />, category: 'DevOps', desc: 'Web Hosting' },
+];
+
+const categories = ['All', 'Frontend', 'Backend', 'Tools', 'DevOps'];
 
 const SkillsSection = () => {
-  const skills = [
-    {
-      title: "Frontend Development",
-      skills: ["React.js", "Next.js", "Tailwind CSS", "HTML5", "CSS3", "JavaScript", "TypeScript"],
-      icon: "🎨"
-    },
-    {
-      title: "Backend Development",
-      skills: ["Node.js", "Express.js", "RESTful APIs", "MongoDB", "Firebase", "JWT", "Mongoose"],
-      icon: "⚙️"
-    },
-    {
-      title: "Dev Tools & Deployment",
-      skills: ["Git", "GitHub", "Docker", "Vercel", "Netlify", "VS Code", "Postman"],
-      icon: "🛠️"
-    },
-    {
-      title: "Additional Technologies",
-      skills: ["Redux", "React Query", "Prisma", "GraphQL", "Socket.io", "WebSockets"],
-      icon: "🚀"
-    }
-  ];
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const filteredSkills = selectedCategory === 'All' ? allSkills : allSkills.filter(skill => skill.category === selectedCategory);
+
+  // Duplicate skills for smooth infinite scroll
+  const doubleSkills = [...filteredSkills, ...filteredSkills];
 
   return (
-    <motion.div
-      className="mb-16"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ viewport: true }}
-    >
-      <h2 className="text-3xl font-bold mb-12  text-center bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
-        Featured Skills
-      </h2>
-     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-  {skills.map((category, catIndex) => (
-    <motion.div
-      key={catIndex}
-      className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
-      whileHover={{
-        y: -10,
-        boxShadow: "0 20px 30px rgba(0,0,0,0.2)"
-      }}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: catIndex * 0.1 }}
-    >
-      <div className="text-4xl mb-4">{category.icon}</div>
-      <h3 className="font-semibold mb-4 text-xl">{category.title}</h3>
-
-      {/* 👉 Make skills in 2 columns */}
-      <div className="grid grid-cols-2 gap-2">
-        {category.skills.map((skill, skillIndex) => (
-          <motion.span
-            key={skillIndex}
-            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-0.5 rounded-full text-center text-sm shadow-sm"
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ 
-              delay: skillIndex * 0.4 + catIndex * 0.4, 
-              type: "spring", 
-              stiffness: 50 
-            }}
-          >
-            {skill}
-          </motion.span>
-        ))}
+    <div className="skills-container">
+      <div className="skills-header">
+        <button className="skills-button">My Skills</button>
+        <h2>Skills and Technology</h2>
+        <div className="category-buttons">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              className={`category-btn ${selectedCategory === cat ? 'active' : ''}`}
+              onClick={() => setSelectedCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
-    </motion.div>
-  ))}
-</div>
 
-    </motion.div>
+      <div className="scroll-wrapper">
+        <div className="scroll-row scroll-left">
+          {doubleSkills.map((skill, index) => (
+            <div key={`top-${index}`} className="skill-card">
+              <div className="icon">{skill.icon}</div>
+              <h4>{skill.name}</h4>
+              <p>{skill.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="scroll-row scroll-right">
+          {doubleSkills.map((skill, index) => (
+            <div key={`bottom-${index}`} className="skill-card">
+              <div className="icon">{skill.icon}</div>
+              <h4>{skill.name}</h4>
+              <p>{skill.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
