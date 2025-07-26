@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import { Player } from "@lottiefiles/react-lottie-player";
-import developerAnimation from "../assets/animation/developer.json";
-import React from 'react';
+import { Player } from "@lottiefiles/react-lottie-player"; // or from "lottie-react"
+import developerAnimation from "../../assets/animation/developer.json"; // replace with your path      
 
 const About = () => {
   return (
@@ -56,7 +55,7 @@ const About = () => {
           </h3>
 
           <p className="text-gray-700 mb-6 leading-relaxed">
-            I'm a passionate Junior Fullstack Web Developer skilled in crafting responsive and scalable web applications using technologies like React.js, Node.js, Express, MongoDB, and Tailwind CSS. I enjoy building clean and functional UIs on the frontend while ensuring robust, secure, and efficient logic on the backend. With a strong foundation in both client-side and server-side development, I bring ideas to life through end-to-end solutions that are user-friendly, maintainable, and performance-driven.
+            I’m a passionate Junior Fullstack Web Developer skilled in crafting responsive and scalable web applications using technologies like React.js, Node.js, Express, MongoDB, and Tailwind CSS. I enjoy building clean and functional UIs on the frontend while ensuring robust, secure, and efficient logic on the backend. With a strong foundation in both client-side and server-side development, I bring ideas to life through end-to-end solutions that are user-friendly, maintainable, and performance-driven.
           </p>
 
           {/* Personal Info */}
@@ -89,4 +88,3 @@ const About = () => {
 };
 
 export default About;
-
