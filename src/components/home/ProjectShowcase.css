@@ -1,0 +1,90 @@
+.project-showcase-wrapper {
+  position: relative;
+  padding: 4rem 0;
+}
+
+.vertical-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background-color: #d1d5db; /* Tailwind gray-300 */
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.project-item {
+  position: relative;
+  margin: 6rem 0;
+}
+
+.project-connector {
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  height: 0;
+  z-index: 1;
+}
+
+.project-connector.left {
+  left: 0;
+  justify-content: flex-end;
+  display: flex;
+}
+
+.project-connector.right {
+  right: 0;
+  justify-content: flex-start;
+  display: flex;
+}
+
+.horizontal-line {
+  width: 60px;
+  height: 4px;
+  background-color: #3b82f6; /* Tailwind blue-500 */
+  position: relative;
+  animation: growLine 1s ease-out forwards;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  margin-left: 6px;
+  margin-right: 6px;
+  animation: popDot 0.6s ease-out forwards;
+}
+
+@keyframes growLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60px;
+  }
+}
+
+@keyframes popDot {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .vertical-line {
+    left: 8px;
+  }
+
+  .project-connector {
+    display: none;
+  }
+
+  .project-card {
+    grid-template-columns: 1fr !important;
+  }
+}
