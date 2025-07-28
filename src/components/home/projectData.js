@@ -18,9 +18,9 @@ const projectData = [
     description:
       "A professional newspaper site with user/admin roles, article stats, premium access, and trending news.",
     images: [
-      "/src/assets/newspaper/dashboard-overview.png",
-      "/src/assets/newspaper/dashboard-page.png",
-      "/src/assets/newspaper/subscribe.png",
+      "https://i.ibb.co/W4fTj4TP/dashboard-overview.png",
+      "https://i.ibb.co/HDbnvRx6/subscribe.png",
+      "https://i.ibb.co/Xf2bmH00/dashboard-page.png",
     ],
     features: [
       "Dynamic articles with view count logic",
@@ -45,9 +45,9 @@ const projectData = [
     description:
       "Manage book categories, borrow/return flow, search/filter, and track borrowed books securely.",
     images: [
-      "/src/assets/library/Screenshot 2025-07-26 153031.png",
-      "/src/assets/library/alluser.png",
-      "/src/assets/library/Screenshot 2025-07-26 153155.png",
+      "https://i.ibb.co/ynptMKCJ/alluser.png",
+      "https://i.ibb.co/zTVN6z2R/Screenshot-2025-07-26-153031.png",
+      "https://i.ibb.co/YBsCkP0c/Screenshot-2025-07-26-153155.png",
     ],
     features: [
       "Real-time book availability updates",
@@ -72,9 +72,9 @@ const projectData = [
     description:
       "A full-stack app to create, join, and manage hobby-based communities with authentication and animations.",
     images: [
-      "/src/assets/hobby/create group.png",
-      "/src/assets/hobby/card.png",
-      "/src/assets/hobby/dashboard-page.png",
+      "https://i.ibb.co/Xf2bmH00/dashboard-page.png",
+      "https://i.ibb.co/zWGYkLxc/Screenshot-2025-07-28-180001.png",
+      "https://i.ibb.co/0zBLrrd/create-group.png",
     ],
     features: [
       "User authentication (JWT + Firebase)",

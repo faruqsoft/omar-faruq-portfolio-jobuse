@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedin, FaFacebook, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { Player } from "@lottiefiles/react-lottie-player";
+import ContactAnimation from "../../assets/animation/contact.json";
 
 const Contact = () => {
   return (
@@ -16,7 +17,7 @@ const Contact = () => {
             <Player
               autoplay
               loop
-              src="https://assets10.lottiefiles.com/packages/lf20_v7qz0vvg.json"
+            src={ContactAnimation}
               style={{ height: "250px", width: "100%" }}
             />
           </div>
